@@ -1,0 +1,265 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- InstanceBegin template="/Templates/soil-forage-water-lab-2col.dwt.php" codeOutsideHTMLIsLocked="false" -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- STYLES -->
+    <link rel="stylesheet" href="bootstrap_min.css" />
+    <link rel="stylesheet" href="select.css" />
+    <script src="content.js"></script>
+    <!-- InstanceEndEditable -->
+</head>
+
+<body bgcolor="white">
+
+<div class="container">
+    <div class="container-fluid">
+        <center>
+            <h1>Chemical Fertilizer Calculator</h1>
+        </center>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="alerts-container">
+        <div class="alert alert-warning">
+            <strong>
+                NOTICE:
+                While the information generated from this site is believed to be accurate, any actions taken based upon the results are the sole responsibility of the user.
+            </strong>
+        </div>
+    </div>
+</div><br>
+<div style="display:none">
+<div class="container">
+    <p>This calculator computes ounce, pound or ton of a given fertilizer required per unit area based on one (match) fertilizer at a time.  The three numbers prominently displayed on fertilizer labels are N-P-K that stand for percentages of nitrogen (N), phoshate <br />(P<SUB>2</SUB>O<SUB>5</SUB>), and  potash (K<SUB>2</SUB>O).</p>
+    <ol>
+        <li>Enter your fertilizer recommendation for N-P-K as provided from AU Soil Testing lab (usually in lbs/acre).</li>
+        <li>Select a fertilizer from the dropdown menu.</li>
+        <li>If your choice is not in the menu, select User Defined and enter your fertilizer grade.</li>
+        <li>Select Your Application Rate (ton/A, lbs/A, lbs/1000 square feet, etc.) from the dropdown menu.</li>
+        <li>If you know your exact area, select "lbs/any sqaure feet" and enter your total area by clicking on "Type your square feet".</li>
+        <li>Select Match by clicking in the radio icon and then click Calculate.</li>
+        <li>The Output will indicate the amount of fertilizer needed for the selected (Match) and the amount of deficit or surplus for the unmatched two.</li>
+        <li> You can print a hardcopy by clicking on Print, or click on Reset to start over.</li>
+        <li>You may choose a single nutrient source fertilizer to complete your deficit.</li>
+    </ol>
+</div>
+<br></div>
+<div class="container">
+    <div class="alert alert-danger">
+        <strong>Caution: </strong>
+        Please make sure that you choose the corect Match, Application Rate, fertilizer Grade and Type, and Recommendation. Consider sidedressing your nitrogen through split application.
+
+    </div>
+</div>
+
+<p align="center">You may simply fill in the fields, then click on Calculate. The output will be in the Output frame.</p>
+<div class="row">
+
+    <div class="col-md-2 col-md-offset-5">
+        <input class="form-control"  id="comvert_simple" >
+    </div>
+    <button class="btn btn-info" onclick="convertKG()">Convert to KG</button>   <button class="btn btn-info" onclick="convertLBS()">Convert to LBS</button>
+
+</div>
+<center>
+    <div class="container">
+        <form name="fertcal" id="fertcal" method="post">
+            <table class="table" cellSpacing=1 cellPadding=2 align=center border=0>
+                <tr>
+                    <div class="form-group">
+                        <td></td>
+                        <td align=middle>N</td>
+                        <td align=middle>P<SUB>2</SUB>O<SUB>5</SUB></td>
+                        <td align=middle>K<SUB>2</SUB>O</td>
+                        <td align=middle>Reccommendation</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td align=right>Recommendation</td>
+                        <td><input name=lbsN size = 8 value=""></td>
+                        <td><input name=lbsP size = 8 value=""></td>
+                        <td><input name=lbsK size = 8 value=""></td>
+                        <td>
+                            <select class="btn btn-group btn-default" id=lunit name=lbsunit value="">
+                                <option value="kg/acre" SELECTED>kg/acre
+                            </select>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td align=right>Fertilizer (%):</td>
+                        <td colspan=3>
+                            <select class="btn btn-group btn-default" name=fert value="" onchange=gradeCalc(document.fertcal)>
+                                <option value="" selected>
+                                <option value="27-0 -0 "> NH4NO3.MgNo3.dolomite(27% N)
+                                <option value="34-0 -0 "> Ammonium nitrate(34% N)
+                                <option value="21-0 -0 "> Ammonium of sulfate(21% N)
+                                <option value="82-0 -0 "> Anhydrous ammonia (82% N)
+                                <option value="18-46-0 "> DAP(18-46-0)
+                                <option value="10-50-0 "> MAP(10-50-0)
+                                <option value="0 -0 -60"> Muriate of potash (60% K2O)
+                                <option value="16-0 -0 "> Nitrate of soda(16% N)
+                                <option value="28-0 -0 "> Nitrogen solution (28% N)
+                                <option value="30-0 -0 "> Nitrogen solution (30% N)
+                                <option value="32-0 -0 "> Nitrogen solution (32% N)
+                                <option value="0 -0 -50"> Sulfate of potash(50%K2O)
+                                <option value="0 -0 -22"> Sulfate of potash-mag(22%K2O)
+                                <option value="7 -0 -0 "> Tankage(Processed)
+                                <option value="0 -46-0 "> TSP(46% P2O5)
+                                <option value="46-0 -0 "> Urea(46% N)
+                                <option value="0 -10-30"> 0-10-30
+                                <option value="0 -20-20"> 0-20-20
+                                <option value="0 -23-30"> 0-23-30
+                                <option value="0 -26-26"> 0-26-26
+                                <option value="4 -16-4 "> 4-16-4
+                                <option value="5 -10-15"> 5-10-15
+                                <option value="5 -20-20"> 5-20-20
+                                <option value="6 -12-12"> 6-12-12
+                                <option value="6 -24-24"> 6-24-24
+                                <option value="9 -23-30"> 9-23-30
+                                <option value="10-10-10"> 10-10-10
+                                <option value="10-20-20"> 10-20-20
+                                <option value="10-34-10"> 10-34-10
+                                <option value="12-12-12"> 12-12-12
+                                <option value="12-24-24"> 12-24-24
+                                <option value="13-13-13"> 13-13-13
+                                <option value="15-0 -15">  15-0-15
+                                <option value="15-15-15"> 15-15-15
+                                <option value="15-30-15"> 15-30-15
+                                <option value="17-17-17"> 17-17-17
+                                <option value="18-2 -4 "> 18-2-4
+                                <option value="19-19-19"> 19-19-19
+                                <option value="20-10-10"> 20-10-10
+                                <option value="20-20-20"> 20-20-20
+                                <option value="28-3 -3 "> 28-3-3
+                                <option value="" >User Defined
+                            </select>
+                        </td>
+                        <td>Your Application Rate</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="form-group">
+                        <td align=right>Grade:</td>
+                        <td><input name=fertN size = 8 value=""></td>
+                        <td><input name=fertP size = 8 value=""></td>
+                        <td><input name=fertK size = 8 value=""></td>
+                        <td>
+                            <select id=funit class="btn btn-default btn-group" name=fertunit value="" onChange="anyunit(document.fertcal)">
+                                <option value="kg/acre" SELECTED>kg/acre
+                                <option value="lbs/1000 sq ft">lbs/1000 sq ft
+                                <option value="lbs/100 sq ft">lbs/100 sq ft
+                                <option value="oz/100 sq ft">oz/100 sq ft
+                                <option value="tons/acre">tons/acre
+                                <option value="lbs/customize sq ft">lbs/customize sq ft</option>
+                            </select>
+                        </td>
+                    </div>
+                </tr>
+                <!--
+                <tr>
+                                         <td>ll</td>
+                                         <td colspan=4></td>
+                                         <td>
+                                             <input type="text" style="display: none;" name="unseen" id="unseen" onClick="this.value=&#39;&#39;;" onFocus="this.select()" onBlur="this.value=!this.value?&#39;Enter Your Square Feet&#39;:this.value;" value="Enter Your Square Feet"></td>
+                                     </tr>
+                 -->
+                <tr>
+                    <div class="form-group">
+                        <td align=right>Match:</td>
+                        <td align=middle><input value="N" type=radio CHECKED name=match></td>
+                        <td align=middle><input valune="P" type=radio name=match></td>
+                        <td align=middle><input value="K" type=radio name=match></td>
+                    </div>
+                </tr>
+            </table>
+        </form></div>
+    <div class="form-group">
+
+
+        <input name=calc value=Calculate type=button class="btn btn-success" onClick=lbsFertCalc(document.fertcal) style="width: 155px; heigh: 32x"></td>
+        <input name=reset value=Reset type=reset class="btn btn-warning" onClick="document.getElementById('text1').innerHTML=''" style="width: 80px; heigh: 32x"></td>
+    </div>
+
+    <table cellSpacing=1 cellPadding=2 align=center border=0>
+        <tr><td>
+            <div class="alerts-container">
+                <div id="error" class="alert alert-warning">
+                </div>
+            </div></td>
+        </tr>
+        <tr>
+            <td align=center><h4 style="margin:0px;">Output</h4></td>
+        <tr>
+        <tr>
+            <td><font size=+0><div id=text1 style="border-style:double;width:600px; height:100px" ></div></font></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td align=center><font size=+0><div class="hide" id=print style="border-style:double;width:50px; height:25px" ><a href="#" onClick="window.print()">Print </a> </div></font></td>
+        </tr>
+        <tr>
+            <td><hr></td>
+        </tr>
+        <tr>
+
+            <td align="center">
+                <input id="totalN" class="form-control" placeholder="enter the total kg for split dose of : N">
+                <button class="btn btn-info" onclick="calculateSplit()">Calculate splits</button>
+            </td>
+
+        </tr>
+        <tr>
+            <td><hr></td>
+        </tr>
+        <tr>
+            <td align=center><h4 style="margin:0px;">Basel Dose</h4></td>
+
+        </tr>
+
+        <tr>
+            <td><input id='base' class="form-group" style='width: 600;height: 50'></td>
+        </tr>
+
+        <tr>
+            <td align=center><h4 style="margin:0px;">Split Dose 1</h4></td>
+        </tr>
+        <tr>
+            <td><input id='dose1' class="form-group" style='width: 600;height: 50'></td>
+        </tr>
+        <tr>
+            <td align=center><h4 style="margin:0px;">Split Dose 2 </h4></td>
+        </tr>
+        <tr>
+            <td><input id='dose2'class="form-group" style='width: 600;height: 50'></td>
+        </tr>
+        <tr>
+            <td align=center><h4 style="margin:0px;">Split Dose 3</h4></td>
+        </tr>
+        <tr>
+            <td><input id='dose3' class="form-group" style='width: 600;height: 50'></td>
+        </tr>
+
+    </table>
+    </form>
+</center>
+<!-- InstanceEndEditable -->
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+    //window.onerror = function(){return true;}
+</script>
+
+
+</div><!-- End id=pageContainer  -->
+</body>
+<!-- InstanceEnd --></html>

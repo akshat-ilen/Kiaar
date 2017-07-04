@@ -1,0 +1,86 @@
+.errorMessage{
+    color : red;
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.drop{
+    font-family: "Roboto-light",sans-serif;
+    color : grey;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    outline: none;
+    height: 3rem;
+    line-height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    padding: 0;
+    display: block;
+
+}
+
+.circle-mask{
+  display: block;
+  height: 96px;
+  width: 96px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 100;
+  margin-bottom: 10px;
+  background-size: 96px;
+  background-repeat: no-repeat;
+  background-image: url(avatar_2x.png);
+  -webkit-transition: opacity 0.075s;
+  -moz-transition: opacity 0.075s;
+  -ms-transition: opacity 0.075s;
+  -o-transition: opacity 0.075s;
+  transition: opacity 0.075s;
+  }
+
+  .slider{
+    margin-top: 0.0001%;
+  }
+
+  .side-nav .collapsible-body li.active{
+      background-color: #80d8ff;
+      font-size: 16px;
+      color : white;
+  }
+  .side-nav .collapsible-body li {
+      font-size: 14px;
+  }
+  .side-nav .collapsible-header.active{
+      background-color: #0091ea;
+
+      color : white;
+      width : 100%;
+  }
+  .side-nav .collapsible-header{
+
+      color : #0091ea;
+  }
+
+  .side-nav .headerbody.active{
+      background-color: #80d8ff;
+      font-size: 16px;
+      color : white;
+  }
+
+  .dropdown-content {
+  background-color: #fff;
+  margin: 0;
+  display: none;
+  min-width: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+  opacity: 0;
+  position: absolute;
+  z-index: 999;
+  will-change: width, max-height;
+  }

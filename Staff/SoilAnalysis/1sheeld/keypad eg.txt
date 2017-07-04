@@ -1,0 +1,35 @@
+C++
+
+Keypad.setOnButtonChange(&myFunction);
+/* myFunction exists under the loop function. */
+/* This function will be invoked each time a new Keypad button is pressed. */
+void myFunction (byte rowNumber , byte coloumnNumber)
+{
+    /*Turn On the LED if ‘1’ is pressed else turn Off. */
+    if(Keypad.isRowPressed(1) && Keypad.isColoumnPressed(1) )
+    {
+        digitalWrite(pin13,HIGH);
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Keypad.setOnButtonChange(&myFunction);
+/* myFunction exists under the loop function. */
+/* This function will be invoked each time a new Keypad button is pressed. */
+void myFunction (byte rowNumber , byte coloumnNumber)
+{
+    /*Turn On the LED if ‘1’ is pressed else turn Off. */
+    if(Keypad.isRowPressed(1) && Keypad.isColoumnPressed(1) )
+    {
+        digitalWrite(pin13,HIGH);
+    }
+}

@@ -1,0 +1,79 @@
+#include <OneSheeld.h>
+#define CUSTOM_SETTINGS
+#define INCLUDE_TERMINAL_SHIELD
+int ledPin1 = 13;
+int hours, minutes, seconds, days, months, years;
+
+
+void setup() 
+{
+  
+  OneSheeld.begin();
+  pinMode(ledPin1,OUTPUT);
+  Phone.setOnCallStatusChange(&myFunction);
+ 
+}
+
+void loop()
+{
+  time();
+  if(hours==0 && minutes == 17 && seconds==0)
+      digitalWrite(ledPin1,HIGH);
+  if(hours==0 && minutes == 18 && seconds==0)
+      digitalWrite(ledPin1,LOW);
+  char* number = Phone.getNumber();
+  
+        // number="";
+
+  //String mynumber="8983708114";  
+  
+ if(Keypad.isRowPressed(0) && Keypad.isColumnPressed(0))
+  {
+    /* Turn on the LED 1. */
+    digitalWrite(ledPin1,HIGH);
+// Terminal.println("on by keypad");
+  }
+   
+    if(Keypad.isRowPressed(0) && Keypad.isColumnPressed(1))
+  {
+    /* Turn on the LED 1. */
+    digitalWrite(ledPin1,LOW);
+   // Terminal.println("off by keypad");
+
+
+  }
+ 
+}
+
+void myFunction(bool isPhoneRinging ,String phoneNumber)
+{
+  
+  
+  
+      String numberon = "+919766991839";
+      String numberoff = "+918983708114";
+
+       /* Print x-y-z axis values on the Terminal Shield. */
+      if(phoneNumber == numberon)
+       {
+          /* Turn on the LED. */
+          digitalWrite(ledPin1,HIGH);
+       }
+       else if(phoneNumber == numberoff)
+        {
+          /* Turn on the LED. */
+          digitalWrite(ledPin1,LOW);
+       }
+}
+void time()
+{
+  /* Always get the date and time. */
+
+  hours = Clock.getHours();
+  minutes = Clock.getMinutes();
+  seconds = Clock.getSeconds();
+  days = Clock.getDay();
+  months = Clock.getMonth();
+  years = Clock.getYear();
+
+}
